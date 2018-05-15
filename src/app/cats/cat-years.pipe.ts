@@ -7,15 +7,13 @@ import { PipeResolver } from '@angular/compiler';
 })
 export class CatYearsPipe implements PipeTransform {
     transform(value: Date): number {
-        let humanYears =  moment().diff(moment(value), 'years');
-        let totalCatYears = 0;
-        if(humanYears >= 25){
-            let moreThan25 = humanYears % 25;
-            totalCatYears = moreThan25 * 4 + 2;
-        }
-        else{
-            totalCatYears = humanYears * (2/25);
-        }
-        return totalCatYears;
+        let diff = Math.floor(moment().diff(moment(value), "years", true));
+		
+		if ( diff <= 2 ) {
+			diff = Math.floor(moment().diff(moment(value), "months", true));
+			return Math.round(diff / 24 * 25);
+		} else {
+			return 25 + ((diff - 2) * 4);
+		}
     }
 }

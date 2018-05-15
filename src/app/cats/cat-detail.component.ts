@@ -1,16 +1,16 @@
-import { Cat } from './cat';
+import { Pet } from '../shared/pet';
 import { Input, Output, Component, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'cat-detail',
-    templateUrl: './cat-details.component.html',
+    template: require('./cat-detail.component.html'),
     styles: []
 })
 export class CatDetailComponent{
-    @Input() cat: Cat;
-    @Output() isFavourite: EventEmitter<Cat> = new EventEmitter<Cat>();
+    @Input() cat: Pet;
+    @Output() isFavourite: EventEmitter<Pet> = new EventEmitter<Pet>();
 
-    setAsFavourite(){
+    setAsFavourite(): any {
         this.isFavourite.emit(this.cat);
     }
 }

@@ -9,24 +9,20 @@ import { PetService } from './core/pet.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'app';
-  cats: Cat[];
-  selectedCat: Cat;
-  favouriteCat: Cat;
+  selectedPet: Pet;
+  favouritePet: Pet;
 
-  constructor(private petService: PetService){ }
+  constructor(private petService: PetService) { }
 
-  ngOnInit(){
-    this.cats = this.petService.getPetList(); 
-    this.favouriteCat = this.petService.favouritePet;
+  ngOnInit(): void {
+    this.favouritePet = this.petService.favouritePet;
   }
 
-  selectCat(cat: Cat): void {
-    this.selectedCat = cat;
+  selectPet(pet: Pet): void {
+    this.selectedPet = pet;
   }
 
-  selectFavourite(event){
-    this.favouriteCat = event;
-    this.petService.favouritePet = this.favouriteCat;
+  selectFavourite(pet: Pet): void {
+    this.favouritePet = pet;
   }
 }
